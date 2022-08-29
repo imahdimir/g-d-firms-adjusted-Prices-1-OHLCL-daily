@@ -39,12 +39,13 @@ def main() :
   di[tid] = di[tid].astype(str)
   df[tid] = df[tid].astype(str)
   ##
-  msk =  df[tid].isin(di[tid])
-  df = df[msk]
+  msk = ~ df[tid].isin(di[tid])
+  df1 = df[msk]
+  assert df1.empty
   ##
   df = df.dropna()
   ##
-  sprq(df, dffp)
+  sprq(df , dffp)
   ##
   tokfp = '/Users/mahdi/Dropbox/tok.txt'
   tok = gtok(tokfp)
@@ -52,15 +53,18 @@ def main() :
   cur_url = 'https://github.com/' + rp_targ.user_name + '/g-' + rp_targ.repo_name
   ##
   msg = 'only firms kept'
-  msg +=
-
-
+  msg += ' by: ' + cur_url
+  ##
+  rp_targ.commit_and_push(msg , user = rp_targ.user_name , token = tok)
 
   ##
-
-
-  ##
+  rp_targ.rmdir()
+  rp_i2f.rmdir()
 
 ##
+
+
 if __name__ == '__main__' :
-  main()  ##
+  main()
+
+##

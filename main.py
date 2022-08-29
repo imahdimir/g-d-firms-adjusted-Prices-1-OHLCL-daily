@@ -45,6 +45,9 @@ def main() :
   ##
   df = df.dropna()
   ##
+  df = df.sort_values([jd])
+  dfv = df.head()
+  ##
   sprq(df , dffp)
   ##
   tokfp = '/Users/mahdi/Dropbox/tok.txt'
@@ -52,7 +55,7 @@ def main() :
   ##
   cur_url = 'https://github.com/' + rp_targ.user_name + '/g-' + rp_targ.repo_name
   ##
-  msg = 'only firms kept'
+  msg = 'sorted'
   msg += ' by: ' + cur_url
   ##
   rp_targ.commit_and_push(msg , user = rp_targ.user_name , token = tok)
